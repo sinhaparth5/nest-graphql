@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  _id: ID!
+  email: String!
+  imageUrl: String
+}
+
+type Todo {
+  _id: ID!
+  title: String!
+  completed: Boolean!
+  userId: ID!
+  user: User!
+}
+
+type LoginResponse {
+  token: String!
+  user: User!
+}
+
+type Query {
+  todos: [Todo!]!
+}
+
+type Mutation {
+  createTodo(input: CreateTodoInput!): Todo!
+  updateTodo(input: UpdateTodoInput!): Todo!
+  deleteTodo(id: String!): Boolean!
+  login(input: LoginInput!): LoginResponse!
+  register(input: RegisterInput!, image: Upload): LoginResponse!
+  updateUserImage(image: Upload!): User!
+}
+
+input CreateTodoInput {
+  title: String!
+}
+
+input UpdateTodoInput {
+  id: ID!
+  title: String
+  completed: Boolean
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input RegisterInput {
+  email: String!
+  password: String!
+}
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
